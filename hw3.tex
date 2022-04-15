@@ -1,0 +1,105 @@
+\documentclass{article}
+
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{fullpage,latexsym,picinpar,amsmath,amsfonts,graphicx, tikz, subcaption, upgreek}
+\usetikzlibrary{trees, decorations, shadows}
+
+\input{macros.tex}
+
+\begin{document}
+
+\centerline{\large \bf MATH126 Homework 2}
+
+\vskip 0.15in
+
+\tikzstyle{plain} = [shape = circle, draw = black]
+%-----------------------------------Unfinished-----------------------------------
+%-----------------------------------Problem 1------------------------------------
+\begin{problem} The complete bipartite graph $K_{l,r}$ is formed by taking one set of $l$ vertices (which I will call the left set or $L$ and one set of $r$ vertices (which I will call the right set or $R$), and connecting every vertex on one set to every vertex in the other set.  For example, $K_{2,3}$ is shown below:
+\vskip 0.15in \noindent
+\begin{tikzpicture}
+	\node[plain] at (0,0) (lu) {};
+	\node[plain] at (0,1) (ld) {};
+	\node[plain] at (1,1.5) (ru) {};
+	\node[plain] at (1,0.5) (rm) {};
+	\node[plain] at (1,-0.5) (rd) {};
+	\path (lu) edge (ru) edge (rm) edge (rd);
+	\path (ld) edge (ru) edge (rm) edge (rd);
+\end{tikzpicture}
+\vskip 0.15in \noindent
+Under what conditions on l and m does $K_{l,r}$ have a Hamiltonian cycle? (In particular, you should explain why the other pairs $(l,r)$ do \emph{not} have a cycle. It's not enough to give a few examples - you should (at least briefly) explain why it's true in general!)
+\end{problem}
+
+\begin{solution} A Hamiltonian cycle is a cycle on a given graph that includes every node exactly once (and no more).  This means that we must enter and exit each vertex once, for otherwise, we have visited the node more than once, or have gotten stuck in the node (as is the case for if we enter more times than we leave).  Generally, it is required that $l=|L|=|R|=r$ for a complete bipartite graph to have a Hamiltonian cycle.  Since it is a bipartite graph, every edge must have an end in either side - that is to say if we leave one side, we must enter the other side.  If the number of edges in both sides do not match, we must 
+\end{solution}
+
+
+%-----------------------------------Unfinished-----------------------------------
+%-----------------------------------Problem 2------------------------------------
+\begin{problem} In class, we showed that every graph on $n$ vertices where each vertex has degree at least $n/2$ automatically has a Hamiltonian cycle.
+\begin{itemize}
+	\item[]{\textbf{Part a:}} Show that for any $m$, there is a graph on $2m+1$ vertices where each vertex has degree at least $m$ that does \emph{not} have a Hamiltonian cycle.
+	\item[]{\textbf{Part b:}} Give an example of a graph on 6 vertices with 11 edges that does not have a Hamiltonian Cycle.
+\end{itemize}
+\end{problem}
+
+\begin{solution}
+\begin{itemize}
+	\item[]{\textbf{Part a:}}
+	\item[]{\textbf{Part b:}}
+\end{itemize}
+\end{solution}
+
+
+%-----------------------------------Unfinished-----------------------------------
+%-----------------------------------Problem 3------------------------------------
+\begin{problem} Consider the De Bruijn graph (as defined in lecture/lecture notes) with $L = \{0,1\} and k=4$.
+\begin{itemize}
+	\item[]{\textbf{Part a:}} How many vertices does this graph have? How many (directed) edges does it have?
+	\item[]{\textbf{Part b:}} Draw the graph.
+	\item[]{\textbf{Part c:}} Find an Eulerian Circuit on the graph. What is the corresponding De Bruijn sequence?
+\end{itemize}
+\end{problem}
+
+\begin{solution}
+\begin{itemize}
+	\item[]{\textbf{Part a:}}
+	\item[]{\textbf{Part b:}}
+	\item[]{\textbf{Part c:}}
+\end{itemize}
+\end{solution}
+
+
+%-----------------------------------Unfinished-----------------------------------
+%-----------------------------------Problem 4------------------------------------
+\begin{problem} In class, we showed that it is impossible to draw the complete graph $K_5$ without having at least one pair of crossing edges. Show that it is possible to draw $K_5$ such that there is only one pair of edges that cross.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+%-----------------------------------Unfinished-----------------------------------
+%-----------------------------------Problem 5------------------------------------
+\begin{problem} In class on Wednesday, we showed that if $G$ has $v$ vertices, $e$ edges, and a planar drawing with $r$ regions, then $v-e+r=2$.
+\begin{itemize}
+	\item[]{\textbf{Part a:}} Show that the assumption of "Connected" is necessary in the above Theorem by giving an example of a planar graph with $v-e+r \neq 2$.
+	\item[]{\textbf{Part b:}} Suppose that G has $v$ vertices, $e$ edges, $k$ components, and a planar drawing with $r$ regions.  Determine an equation relating $v$, $e$, $r$, and $k$. (You may want to look at the Proof of Euler's Theorem from lecture and determine what needs to be changed).
+\end{itemize}
+\end{problem}
+
+\begin{solution}
+\begin{itemize}
+	\item[]{\textbf{Part a:}} Consider the following unconnected graph:
+		\vskip 0.15in \noindent
+		\begin{tikzpicture}
+			\node[plain] (a) {};
+			\node[plain] (b) [right of=a]{}; 
+		\end{tikzpicture}
+		\vskip 0.15in \noindent
+		Where $v = 2$, $e = 0$, $r = 1$, and $v - e + r = 3$.  It is clear that this graph, 		because it is unconnected, violates Euler's formula for planar graphs.
+	\item[]{\textbf{Part b:}} Consider the set of connected subcomponents of an unconnected graph.  It is clear that if an unconnected graph admits a planar drawing (i.e. it is planar), each of its connected subcomponents must themselves be planar.  This means that Euler's formula for planar graphs applies to each of the subcomponents.
+\end{itemize}
+\end{solution}
+
+\end{document}
