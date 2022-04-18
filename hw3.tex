@@ -13,6 +13,7 @@
 \vskip 0.15in
 
 \tikzstyle{plain} = [shape = circle, draw = black]
+\tikzstyle{dir} = [->, line width=0.5mm]
 %-----------------------------------Unfinished-----------------------------------
 %-----------------------------------Problem 1------------------------------------
 \begin{problem} The complete bipartite graph $K_{l,r}$ is formed by taking one set of $l$ vertices (which I will call the left set or $L$ and one set of $r$ vertices (which I will call the right set or $R$), and connecting every vertex on one set to every vertex in the other set.  For example, $K_{2,3}$ is shown below:
@@ -30,11 +31,11 @@
 Under what conditions on l and m does $K_{l,r}$ have a Hamiltonian cycle? (In particular, you should explain why the other pairs $(l,r)$ do \emph{not} have a cycle. It's not enough to give a few examples - you should (at least briefly) explain why it's true in general!)
 \end{problem}
 
-\begin{solution} A Hamiltonian cycle is a cycle on a given graph that includes every node exactly once (and no more).  This means that we must enter and exit each vertex once, for otherwise, we have visited the node more than once, or have gotten stuck in the node (as is the case for if we enter more times than we leave).  Generally, it is required that $l=|L|=|R|=r$ for a complete bipartite graph to have a Hamiltonian cycle.  Since it is a bipartite graph, every edge must have an end in either side - that is to say if we leave one side, we must enter the other side.  If the number of edges in both sides do not match, we must 
+\begin{solution} A Hamiltonian cycle is a cycle on a given graph that includes every node exactly once (and no more).  This means that we must enter and exit each vertex once, for otherwise, we have visited the node more than once, or have gotten stuck in the node (as is the case for if we enter more times than we leave).  Generally, it is required that $l=|L|=|R|=r$ for a complete bipartite graph to have a Hamiltonian cycle.  Since it is a bipartite graph, every edge must have an end in either side - that is to say if we leave one side, we must enter the other side.  If the number of edges in both sides do not match, we must either enter and exit the left and right sides a different number of times - implying that the graph would need to be not bipartite, or we would 
 \end{solution}
 
 
-%-----------------------------------Unfinished-----------------------------------
+%-----------------------------------Finished-------------------------------------
 %-----------------------------------Problem 2------------------------------------
 \begin{problem} In class, we showed that every graph on $n$ vertices where each vertex has degree at least $n/2$ automatically has a Hamiltonian cycle.
 \begin{itemize}
@@ -45,15 +46,29 @@ Under what conditions on l and m does $K_{l,r}$ have a Hamiltonian cycle? (In pa
 
 \begin{solution}
 \begin{itemize}
-	\item[]{\textbf{Part a:}}
-	\item[]{\textbf{Part b:}}
+	\item[]{\textbf{Part a:}} I will use the solution of problem 1 to solve this.  We can construct a complete bipartite graph on $2m+1$ vertices where, without loss of generality, the left side has $m$ vertices and the right side has $m+1$ vertices.  In this graph, every vertex in the left side would have $m+1$ edges, and every vertex on the right would have $m$ edges - so every vertex has degree at least $m$.  From problem 1, we have shown that a complete bipartite graph with the number of vertices in each side being nonequal necessarily means that such a graph cannot have a Hamiltonian cycle, so this graph does not have a Hamiltonian cycle.
+	\item[]{\textbf{Part b:}} Such a graph - with $6$ vertices and $11$ edges can be constructed as follows:
+	\newline\noindent
+	\begin{tikzpicture}
+		\node[plain] at (2,0) (a) {};
+		\node[plain] at (0.61803398875,1.90211303259) (b) {};
+		\node[plain] at (-1.61803398875,1.17557050458) (c) {};
+		\node[plain] at (-1.61803398875,-1.17557050458) (d) {};
+		\node[plain] at (0.61803398875,-1.90211303259) (e) {};
+		\node[plain] at (4,0) (f) {};
+		\path (a) edge (b) edge (c) edge (d) edge (e) edge (f);
+		\path (b) edge (c) edge (d) edge (e);
+		\path (c) edge (d) edge (e);
+		\path (d) edge (e);
+	\end{tikzpicture}
+	It can be seen that this graph has $6$ vertices and $11$ edges, but cannot possibly have a Hamiltonian cycle since the rightmost vertex has degree 1, meaning that it is impossible for any cycle to include it.
 \end{itemize}
 \end{solution}
 
 
-%-----------------------------------Unfinished-----------------------------------
+%-----------------------------------Finished-------------------------------------
 %-----------------------------------Problem 3------------------------------------
-\begin{problem} Consider the De Bruijn graph (as defined in lecture/lecture notes) with $L = \{0,1\} and k=4$.
+\begin{problem} Consider the De Bruijn graph (as defined in lecture/lecture notes) with $L = \{0,1\}$ and $k=4$.
 \begin{itemize}
 	\item[]{\textbf{Part a:}} How many vertices does this graph have? How many (directed) edges does it have?
 	\item[]{\textbf{Part b:}} Draw the graph.
@@ -63,23 +78,79 @@ Under what conditions on l and m does $K_{l,r}$ have a Hamiltonian cycle? (In pa
 
 \begin{solution}
 \begin{itemize}
-	\item[]{\textbf{Part a:}}
-	\item[]{\textbf{Part b:}}
-	\item[]{\textbf{Part c:}}
+	\item[]{\textbf{Part a:}} Every vertex corresponds to a unique binary sequence of length 3, so there are $2^3=8$ vertices.
+	\item[]{\textbf{Part b:}} The De Bruijn grpah with $L=\{0,1\}$ and $k=4$ is as follows:
+	\vskip 0.15in \noindent
+	\begin{tikzpicture}
+		\node[plain] at (10,0) (000) {000};
+		\node[plain] at (8,-2) (001) {001};
+		\node[plain] at (6,0) (010) {010};
+		\node[plain] at (2,-2) (011) {011};
+		\node[plain] at (8,2) (100) {100};
+		\node[plain] at (4,0) (101) {101};
+		\node[plain] at (2,2) (110) {110};
+		\node[plain] at (0,0) (111) {111};
+		\draw[dir] (000) to [loop right, out=320, in=45, distance=10mm] node[midway, right] {+0} (000);
+		\draw[dir] (000) to node[midway, above left, sloped, pos=0.3] {+1} (001);
+		\draw[dir] (001) to node[midway, above right, sloped, pos=0.65] {+0} (010);
+		\draw[dir] (001) to node[midway, above] {+1} (011);
+		\draw[dir] (010) to node[midway, above left, sloped, pos=0.65] {+0} (100);
+		\draw[dir] (010) to [out=135, in=45] node[midway, above] {+1} (101);		
+		\draw[dir] (011) to node[midway, left] {+0} (110);
+		\draw[dir] (011) to node[midway, above left, sloped, pos=0.3] {+1} (111);
+		\draw[dir] (100) to node[midway, above right, sloped, pos=0.3] {+0} (000);
+		\draw[dir] (100) to node[midway, right] {+1} (001);
+		\draw[dir] (101) to [out=320, in=225] node[midway, below] {+0} (010);
+		\draw[dir] (101) to node[midway, above left, sloped, pos=0.3] {+1} (011);
+		\draw[dir] (110) to node[midway, above] {+0} (100);
+		\draw[dir] (110) to node[midway, above right, sloped, pos=0.3] {+1} (101);
+		\draw[dir] (111) to node[midway, above left, sloped, pos=0.65] {+0} (110);
+		\draw[dir] (111) to [loop left, out=225, in=135, distance=10mm] node[midway, left] {+1} (111);
+	\end{tikzpicture}
+	\item[]{\textbf{Part c:}} An Eulerian circuit in the De Brujin graph form \textbf{part b} is as follows : 000,001,011,111,110,101,010,100,000, and the corresponding De Brujin sequence is 11101000.
 \end{itemize}
 \end{solution}
 
 
-%-----------------------------------Unfinished-----------------------------------
+%-----------------------------------Finished-------------------------------------
 %-----------------------------------Problem 4------------------------------------
 \begin{problem} In class, we showed that it is impossible to draw the complete graph $K_5$ without having at least one pair of crossing edges. Show that it is possible to draw $K_5$ such that there is only one pair of edges that cross.
 \end{problem}
 
 \begin{solution}
+One way to show that something is possible is to actually do it - in this case that means that I will draw the graph $K_5$ with only one crossing edge.  Typically,$K_5$ is drawn as follows:
+\vskip 0.15in \noindent
+\begin{tikzpicture}
+	\node[plain] at (2,0) (a) {};
+	\node[plain] at (0.61803398875,1.90211303259) (b) {};
+	\node[plain] at (-1.61803398875,1.17557050458) (c) {};
+	\node[plain] at (-1.61803398875,-1.17557050458) (d) {};
+	\node[plain] at (0.61803398875,-1.90211303259) (e) {};
+	\path (a) edge (b) edge (c) edge (d) edge (e);
+	\path (b) edge (c) edge (d) edge (e);
+	\path (c) edge (d) edge (e);
+	\path (d) edge (e);
+\end{tikzpicture}
+\vskip 0.15in \noindent
+It doesn't take a mathematician to see that this graph has many edges that cross many times (a total of 5 edge crossings). We can redraw the graph so that it only has one pair of crossing edges as follows:
+\vskip 0.15in \noindent
+\begin{tikzpicture}
+	\node[plain] at (0,0) (top) {};
+	\node[plain] at (-0.75,-2.5) (middle left) {};
+	\node[plain] at (0.75,-2.5) (middle right) {};
+	\node[plain] at (-2,-4) (bottom left) {};
+	\node[plain] at (2,-4) (bottom right) {};
+	\path (top) edge (middle left) edge (middle right) edge (bottom left) edge (bottom right);
+	\path (middle left) edge (bottom left) edge (middle right) edge (bottom right);
+	\path (middle right) edge (bottom left) edge (bottom right);
+	\path (bottom left) edge (bottom right);
+\end{tikzpicture}
+\vskip 0.15in \noindent
+This graph can clearly be seen to be both equivalent to the previous drawing of $K_5$ and to have only one pair of edges that cross, so we have shown that it is possible to draw $K_5$ with only one pair of edges that overlap.
 \end{solution}
 
 
-%-----------------------------------Unfinished-----------------------------------
+%-----------------------------------Finished-------------------------------------
 %-----------------------------------Problem 5------------------------------------
 \begin{problem} In class on Wednesday, we showed that if $G$ has $v$ vertices, $e$ edges, and a planar drawing with $r$ regions, then $v-e+r=2$.
 \begin{itemize}
@@ -98,7 +169,9 @@ Under what conditions on l and m does $K_{l,r}$ have a Hamiltonian cycle? (In pa
 		\end{tikzpicture}
 		\vskip 0.15in \noindent
 		Where $v = 2$, $e = 0$, $r = 1$, and $v - e + r = 3$.  It is clear that this graph, 		because it is unconnected, violates Euler's formula for planar graphs.
-	\item[]{\textbf{Part b:}} Consider the set of connected subcomponents of an unconnected graph.  It is clear that if an unconnected graph admits a planar drawing (i.e. it is planar), each of its connected subcomponents must themselves be planar.  This means that Euler's formula for planar graphs applies to each of the subcomponents.
+	\item[]{\textbf{Part b:}} Consider the set of connected components of an unconnected graph.  It is clear that if an unconnected graph admits a planar drawing (i.e. it is planar), each of its connected components must themselves be planar.  This means that Euler's formula for planar graphs applies to each of the components. If we write that for each component $k$, $v_k$ is the number of vertices in that component, $e_k$ is the number of edges of that component, and $r_k$ is the number of regions for that component, we can then write $\forall k, \quad v_k-e_k+r_k=2$.  Since each component is not connected to any component, no vertices nor edges in any component are included in another - such that $\sum_k v_k = v$, and $\sum_k e_k = e$.  When we consider how to combine the regions, we need to be a bit more careful.  Every component has both internal regions and an external region - the region entierely unbounded by the component.  Since the external region is not bounded by any of the components, all components share the same external region, so we can write $\sum_k r_k = r + k - 1$. Now we have all that we need to complete the analog to Euler's formula for unconnected graphs: $\sum_k (v_k-e_k+r_k) = \sum_k v_k - \sum_k e_k + \sum_k r_k = v - e + r + k - 1$,  and $\sum_k 2 = 2 \cdot k$, so we obtain the equation $v-e+r+k-1=2\cdot k$, which after some algebraic persuasion gives the final result:
+$$v-e+r-k=1$$
+	
 \end{itemize}
 \end{solution}
 
