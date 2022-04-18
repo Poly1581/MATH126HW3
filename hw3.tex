@@ -8,13 +8,13 @@
 
 \begin{document}
 
-\centerline{\large \bf MATH126 Homework 2}
+\centerline{\large \bf MATH126 Homework 3}
 
 \vskip 0.15in
 
 \tikzstyle{plain} = [shape = circle, draw = black]
 \tikzstyle{dir} = [->, line width=0.5mm]
-%-----------------------------------Unfinished-----------------------------------
+%-----------------------------------Finished-------------------------------------
 %-----------------------------------Problem 1------------------------------------
 \begin{problem} The complete bipartite graph $K_{l,r}$ is formed by taking one set of $l$ vertices (which I will call the left set or $L$ and one set of $r$ vertices (which I will call the right set or $R$), and connecting every vertex on one set to every vertex in the other set.  For example, $K_{2,3}$ is shown below:
 \vskip 0.15in \noindent
@@ -28,10 +28,10 @@
 	\path (ld) edge (ru) edge (rm) edge (rd);
 \end{tikzpicture}
 \vskip 0.15in \noindent
-Under what conditions on l and m does $K_{l,r}$ have a Hamiltonian cycle? (In particular, you should explain why the other pairs $(l,r)$ do \emph{not} have a cycle. It's not enough to give a few examples - you should (at least briefly) explain why it's true in general!)
+Under what conditions on l and m does $K_{l,r}$ have a Hamiltonian cycle? (In particular, you should explain why the other pairs $(l,r)$ do \emph{not} have a cycle. It's not enough to give a few examples - you should (at least briefly - explain why it's true in general!)
 \end{problem}
 
-\begin{solution} A Hamiltonian cycle is a cycle on a given graph that includes every node exactly once (and no more).  This means that we must enter and exit each vertex once, for otherwise, we have visited the node more than once, or have gotten stuck in the node (as is the case for if we enter more times than we leave).  Generally, it is required that $l=|L|=|R|=r$ for a complete bipartite graph to have a Hamiltonian cycle.  Since it is a bipartite graph, every edge must have an end in either side - that is to say if we leave one side, we must enter the other side.  If the number of edges in both sides do not match, we must either enter and exit the left and right sides a different number of times - implying that the graph would need to be not bipartite, or we would 
+\begin{solution} A Hamiltonian cycle is a circuit (a path that starts and ends at the same vertex) that passes through (or includes) all of the vertices of the graph.  From this definition, it follows that all vertices in the graph must be connected through 2 edges in the cycle (one in and one out, though in and out are arbitrary in an undirected graph).  Since the graphs we are considering are bipartite graphs, all edges connect one vertex in the left group and one vertex in the right group.  Combining all of this, the left group must have a total of $2\cdot l$ connections to vertices in the right group, and the right group must have $2\cdot r$ connections to vertices in the left group, so $2\cdot l = 2\cdot r \Rightarrow r=l$.  The left and right groups in a complete bipartite graph must be equal in size for the graph to have a Hamiltonian cycle.
 \end{solution}
 
 
